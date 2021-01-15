@@ -23,5 +23,5 @@
 ### Results
 - 77 Ship Names and their hyperdrive rating was found
 - Screen shots are included in the repo
-[Screen Shot 1](starwars1.png)
-[Screen Shot 2](starwars 2.png)
+![screen shot 1](starwars1.png "Screen shot 1")
+![screen shot 2](starwars2.png "Screen shot 2")
