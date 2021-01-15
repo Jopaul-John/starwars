@@ -1,0 +1,39 @@
+version: "3.7"
+
+services:
+  frontend:
+    build: ./web
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+    depends_on: 
+      - web
+      - redis
+      - daphne
+    ports:
+      - 1337:80
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app/
+    ports:
+      - 8000:8000
+    depends_on: 
+      - redis
+  
+  redis:
+    restart: always
+    image: redis:latest
+    expose:
+      - 6379
+  daphne:
+    build: .
+    command: daphne -b 0.0.0.0 -p 9000 star_wars_project.routing:application
+    depends_on:
+      - redis
+      - web
+
+
+volumes:
+  static_volume:
